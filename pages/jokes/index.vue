@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <ul v-for="joke in allJokes" :key="joke.key">
-      <li>{joke.joke}</li>
-    </ul>
+  <div v-if="allJokes">
+    <SearchJokes />
+    <Joke v-for="joke in allJokes" :key="joke.id" :joke="joke.joke" :id="joke.id" />
   </div>
+  <h2 v-else>No joke available</h2>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Joke from "../../components/Joke";
+import SearchJokes from "../../components/SearchJokes";
 
 export default {
   head() {
@@ -21,6 +23,10 @@ export default {
         }
       ]
     };
+  },
+  components: {
+    Joke,
+    SearchJokes
   },
   methods: {
     ...mapActions(["getJokes"])

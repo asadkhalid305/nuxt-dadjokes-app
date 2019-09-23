@@ -6,8 +6,12 @@ import jokes from './modules/jokes';
 Vue.use(Vuex);
 
 // Create store
-export default new Vuex.Store({
-    modules: {
-        jokes
-    }
-});
+const store = () => {
+    return new Vuex.Store({
+        modules: {
+            jokes
+        }
+    });
+}
+
+export default store
